@@ -1,2 +1,5 @@
-# ScratchVC
-Bug-free, easy, tiny scratch VC.
+# Scratch Voice Chat 
+
+VC for Scratch!
+PeerJS free server only supported
+
