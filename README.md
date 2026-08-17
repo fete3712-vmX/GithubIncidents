@@ -1,5 +1,3 @@
-# Scratch Voice Chat 
+All Github Incidents Archived since Aug 17, 2026
 
-VC for Scratch!
-PeerJS free server only supported
-
+Every one of them since                  ↑↑↑
