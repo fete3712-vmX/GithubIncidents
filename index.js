@@ -1,43 +1,47 @@
 (function (Scratch) {
     'use strict';
 
-    // Check if Scratch runtime is available
-    if (!Scratch.extensions) {
-        return;
+    if (!Scratch.extensions.unsandboxed) {
+        throw new Error('This extension requires unsandboxed mode to run');
     }
+    
 
-    class MyCustomExtension {
+    class ScratchVC {
         constructor(runtime) {
             this.runtime = runtime;
+            this.peer = null;
+            this.connections = {};
+                                    this.lastData = '';
+                                                
+                                                            // Load PeerJS library dynamically if not already loaded
+                                                                        this._loadPeerJS();
         }
 
-        // Define the blocks and layout of your extension
         getInfo() {
             return {
-                id: 'mycustomextension', // Unique ID (no spaces)
-                name: 'My Extension',    // Name shown in the block palette
-                color1: '#0099ff',       // Primary block color (Hex)
-                color2: '#0077cc',       // Secondary block color (Hex)
+                id: 'scratchvc', // Unique ID (no spaces)
+                name: 'Scratch Voice Chat',    // Name shown in the block palette
+                color1: '#1f9900',       // Primary block color (Hex)
+                color2: '#0f6700',       // Secondary block color (Hex)
                 blocks: [
                     {
-                        opcode: 'myReporterBlock',
-                        blockType: Scratch.BlockType.REPORTER,
-                        text: 'say hello to [NAME]',
+                        opcode: 'connectToVoicechat',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'Connect to chat id [ID]',
                         arguments: {
-                            NAME: {
-                                type: Scratch.ArgumentType.STRING,
-                                defaultValue: 'World'
+                            ID: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 0 // Public one \\
                             }
                         }
-                    },
-                    {
-                        opcode: 'myCommandBlock',
-                        blockType: Scratch.BlockType.COMMAND,
-                        text: 'do something important'
                     }
                 ]
             };
         }
+    }
+
+    connectToVoicechat(args) {
+        // peerjs
     }
 
     // Register the extension with Scratch
